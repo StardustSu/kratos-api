@@ -29,6 +29,8 @@
     "cache-manager": "^6.4.1",
     "cache-manager-redis-store": "^3.0.1",
     "dotenv": "^16.4.7",
+    "grammy": "^1.36.1",
+    "moment": "^2.30.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },

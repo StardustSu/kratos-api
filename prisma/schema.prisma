@@ -27,9 +27,21 @@ model Bill {
 
 model Player {
   id                Int      @id @unique @default(autoincrement())
-  nickname          String
+  nickname          String   @unique
   whitelisted_until DateTime @default(now())
   balance           Int      @default(0) @db.UnsignedInt
+  plus_until        DateTime @default(now())
+  group             String   @default("default")
   created_at        DateTime @default(now())
   updated_at        DateTime @updatedAt
+}
+
+model WhitelistOrder {
+  id          String   @id @unique @default(uuid())
+  nickname    String
+  description String   @db.VarChar(1200)
+  contact     String
+  approved    Boolean  @default(false)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }

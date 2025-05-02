@@ -55,7 +55,7 @@ export class BillingController {
         const bill = await this.billing.bill(id);
 
         return {
-            status: bill?.status || 0
+            status: bill?.status || -1
         };
     }
 

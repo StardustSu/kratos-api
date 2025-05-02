@@ -1,12 +1,21 @@
+import { PlayerController } from './genesis/player.controller';
+import { TelegramModule } from './telegram.module';
+import { InfoModule } from './info/info.module';
+import { WhitelistController } from './genesis/whitelist.controller';
+import { GenesisModule } from './genesis/genesis.module';
+import { AppService } from './app.service';
 import { PlayersModule } from './players/players.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { BillingModule } from './billing/billing.module';
 import { PrismaModule } from './prisma.module';
 import { Module } from '@nestjs/common';
 import * as redisStore from 'cache-manager-redis-store';
+import { TelegramService } from './telegram.service';
+import { BillingService } from './billing/billing.service';
 
 @Module({
   imports: [
+    TelegramModule,
     CacheModule.register({
       store: redisStore,
       host: 'ai.lampamc.ru', // Redis server host
@@ -16,10 +25,19 @@ import * as redisStore from 'cache-manager-redis-store';
       isGlobal: true,
     }),
     PrismaModule,
+    TelegramModule,
     BillingModule,
     PlayersModule,
+    GenesisModule,
+    InfoModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [
+  ],
+  providers: [
+    BillingService,
+    AppService,
+  ],
+  exports: [
+  ]
 })
 export class AppModule { }
