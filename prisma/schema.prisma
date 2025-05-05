@@ -45,3 +45,10 @@ model WhitelistOrder {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
+
+model OnlineStats {
+  id    BigInt   @id @unique @default(autoincrement())
+  full  Int
+  modes String
+  time  DateTime @default(now())
+}

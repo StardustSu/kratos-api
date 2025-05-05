@@ -1,3 +1,4 @@
+import { AppController } from './app.controller';
 import { StatsController } from './genesis/stats.controller';
 import { PlayerController } from './genesis/player.controller';
 import { TelegramModule } from './telegram.module';
@@ -33,6 +34,7 @@ import { BillingService } from './billing/billing.service';
     InfoModule,
   ],
   controllers: [
+    AppController,
   ],
   providers: [
     BillingService,
