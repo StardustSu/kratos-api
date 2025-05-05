@@ -55,6 +55,6 @@ model OnlineStats {
 
 model ContainerData {
   id         BigInt   @id @unique @default(autoincrement())
-  data       String
+  data       String   @db.VarChar(4096)
   created_at DateTime @default(now())
 }

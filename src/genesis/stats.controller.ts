@@ -11,7 +11,7 @@ export class StatsController {
 
     @Post("/online")
     async onlineStat(@Body() body) {
-        this.prisma.onlineStats.create({
+        await this.prisma.onlineStats.create({
             data: {
                 full: body.online,
                 modes: body.modes
