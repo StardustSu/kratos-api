@@ -58,3 +58,11 @@ model ContainerData {
   data       String   @db.VarChar(4096)
   created_at DateTime @default(now())
 }
+
+model SlimeWorld {
+  name         String @id @unique
+  difficulty   String @default("peaceful")
+  environment  String @default("NORMAL")
+  worldType    String @default("DEFAULT")
+  defaultBiome String @default("minecraft:plains")
+}

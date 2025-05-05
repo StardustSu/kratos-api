@@ -1,10 +1,6 @@
-import { ContainersController } from './genesis/containers.controller';
 import { AppController } from './app.controller';
-import { StatsController } from './genesis/stats.controller';
-import { PlayerController } from './genesis/player.controller';
 import { TelegramModule } from './telegram.module';
 import { InfoModule } from './info/info.module';
-import { WhitelistController } from './genesis/whitelist.controller';
 import { GenesisModule } from './genesis/genesis.module';
 import { AppService } from './app.service';
 import { PlayersModule } from './players/players.module';
@@ -13,7 +9,6 @@ import { BillingModule } from './billing/billing.module';
 import { PrismaModule } from './prisma.module';
 import { Module } from '@nestjs/common';
 import * as redisStore from 'cache-manager-redis-store';
-import { TelegramService } from './telegram.service';
 import { BillingService } from './billing/billing.service';
 
 @Module({
