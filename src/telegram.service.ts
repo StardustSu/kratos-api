@@ -56,7 +56,7 @@ Now Plus until: ${p.plus_until.toLocaleDateString()}`);
                 setTimeout(this.run, 10_000);
             });
             console.log("tg run");
-            this.sendNOC("Running listeners!")
+            // this.sendNOC("Running listeners!")
         }
         else this.go = true;
     }

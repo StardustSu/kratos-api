@@ -1,3 +1,4 @@
+import { ContainersController } from './genesis/containers.controller';
 import { AppController } from './app.controller';
 import { StatsController } from './genesis/stats.controller';
 import { PlayerController } from './genesis/player.controller';

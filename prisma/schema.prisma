@@ -52,3 +52,9 @@ model OnlineStats {
   modes String
   time  DateTime @default(now())
 }
+
+model ContainerData {
+  id         BigInt   @id @unique @default(autoincrement())
+  data       String
+  created_at DateTime @default(now())
+}

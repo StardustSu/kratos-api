@@ -10,10 +10,11 @@ import { PrismaModule } from 'src/prisma.module';
 import { TelegramModule } from 'src/telegram.module';
 import { PlayerController } from './player.controller';
 import { StatsController } from './stats.controller';
+import { ContainersController } from './containers.controller';
 
 @Module({
     imports: [PrismaModule, PlayersModule, TelegramModule],
-    controllers: [PlayerController, WhitelistController, StatsController],
+    controllers: [PlayerController, WhitelistController, StatsController, ContainersController],
     providers: [BillingService],
 })
 export class GenesisModule { }
