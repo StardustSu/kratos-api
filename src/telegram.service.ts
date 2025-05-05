@@ -49,7 +49,15 @@ Now Plus until: ${p.plus_until.toLocaleDateString()}`);
     }
 
     run() {
-        if (this.bot) { this.bot.start(); console.log("tg run"); }
+        if (this.bot) {
+            this.bot.start().catch(ex => {
+                this.sendNOC("Exception occured! Retrying in 10...")
+                console.log("!! TG RETRY !!");
+                setTimeout(this.run, 10_000);
+            });
+            console.log("tg run");
+            this.sendNOC("Running listeners!")
+        }
         else this.go = true;
     }
 }

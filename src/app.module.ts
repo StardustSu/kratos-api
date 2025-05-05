@@ -1,3 +1,4 @@
+import { StatsController } from './genesis/stats.controller';
 import { PlayerController } from './genesis/player.controller';
 import { TelegramModule } from './telegram.module';
 import { InfoModule } from './info/info.module';

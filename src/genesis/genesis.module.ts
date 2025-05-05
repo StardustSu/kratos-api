@@ -9,10 +9,11 @@ import { BillingService } from 'src/billing/billing.service';
 import { PrismaModule } from 'src/prisma.module';
 import { TelegramModule } from 'src/telegram.module';
 import { PlayerController } from './player.controller';
+import { StatsController } from './stats.controller';
 
 @Module({
     imports: [PrismaModule, PlayersModule, TelegramModule],
-    controllers: [PlayerController, WhitelistController],
+    controllers: [PlayerController, WhitelistController, StatsController],
     providers: [BillingService],
 })
 export class GenesisModule { }
