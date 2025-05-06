@@ -49,13 +49,18 @@ Now Plus until: ${p.plus_until.toLocaleDateString()}`);
     }
 
     run() {
+        console.log("!! run() exec");
         if (this.bot) {
+            console.log("!! trying to run xx listener");
+            console.log("!! trying to run xx listener");
+            console.log("!! trying to run xx listener");
             this.bot.start().catch(ex => {
-                this.sendNOC("Exception occured! Retrying in 10...")
-                console.log("!! TG RETRY !!");
+                console.log("!! ERROR: there is already another listener, retry in 10");
+                console.log("!! ERROR: there is already another listener, retry in 10");
+                console.log("!! ERROR: there is already another listener, retry in 10");
                 setTimeout(this.run, 10_000);
             });
-            console.log("tg run");
+            console.log("run");
             // this.sendNOC("Running listeners!")
         }
         else this.go = true;
