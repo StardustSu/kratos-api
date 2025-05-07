@@ -1,7 +1,6 @@
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { Body, Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
 import { PlayerService } from './players.service';
-import { get } from 'http';
 import { TelegramService } from 'src/telegram.service';
 
 @Controller('/players')
@@ -24,6 +23,21 @@ export class PlayersController {
         return {
             whitelisted_until: (await this.players.getWhitelist(name)).getTime()
         };
+    }
+
+    @Get(":name/karma")
+    @CacheTTL(10_000)
+    async getKarma(@Param('name') name: string) {
+        return {
+            karma: (await this.players.getOrCreate(name)).karma
+        };
+    }
+
+    @Post(":name/gg")
+    @CacheTTL(10_000)
+    async gg(@Param('name') name: string) {
+        await this.players.giveKarma(name, 5);
+        return { ok: true };
     }
 
     @Post(":name/whitelist/free")

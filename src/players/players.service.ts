@@ -59,4 +59,18 @@ export class PlayerService {
         return order;
     }
 
+    async giveKarma(name: string, amount: number) {
+        await this.getOrCreate(name);
+        this.prisma.player.update({
+            where: {
+                nickname: name
+            },
+            data: {
+                karma: {
+                    increment: amount
+                }
+            }
+        });
+    }
+
 }
