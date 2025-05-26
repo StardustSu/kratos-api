@@ -9,7 +9,7 @@ import { PrismaService } from 'src/prisma.service';
 export class ContainersController {
     constructor(private prisma: PrismaService) { }
 
-    private containersCache = "";
+    // private containersCache = "";
 
     @Post('/cache')
     async saveContainersState(@Body("data") data) {
@@ -19,21 +19,19 @@ export class ContainersController {
                 data: data
             }
         });
-        this.containersCache = data;
+        //this.containersCache = data;
         return { ok: true };
     }
 
     @Get('/cache')
     @Header('Content-Type', 'text/plain')
     async getContainersState() {
-        if (this.containersCache.length < 2) {
-            this.containersCache = (await this.prisma.containerData.findFirst({
-                orderBy: {
-                    created_at: 'desc',
-                    id: 'desc'
-                }
-            }))?.data || "";
-        }
-        return this.containersCache;
+        const containersCache = (await this.prisma.containerData.findFirst({
+            orderBy: {
+                created_at: 'desc',
+                id: 'desc'
+            }
+        }))?.data || "";
+        return containersCache;
     }
 }
