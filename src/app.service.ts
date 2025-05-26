@@ -1,5 +1,5 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { TelegramService } from './telegram.service';
+import { TelegramService } from './telegram/telegram.service';
 
 @Injectable()
 export class AppService implements OnModuleInit {

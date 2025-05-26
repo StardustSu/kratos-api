@@ -5,7 +5,7 @@ import { YookassaService } from './yookassa.service';
 import { YookassaController } from './yookassa.controller';
 import { PrismaModule } from 'src/prisma.module';
 import { PlayersModule } from 'src/players/players.module';
-import { TelegramModule } from 'src/telegram.module';
+import { TelegramModule } from 'src/telegram/telegram.module';
 import { PlayerService } from 'src/players/players.service';
 
 @Module({

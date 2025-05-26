@@ -1,7 +1,7 @@
 import { CacheInterceptor, CacheTTL } from '@nestjs/cache-manager';
 import { Body, Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
 import { PlayerService } from './players.service';
-import { TelegramService } from 'src/telegram.service';
+import { TelegramService } from 'src/telegram/telegram.service';
 
 @Controller('/players')
 @UseInterceptors(CacheInterceptor)

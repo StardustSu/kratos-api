@@ -1,5 +1,5 @@
 import { AppController } from './app.controller';
-import { TelegramModule } from './telegram.module';
+import { TelegramModule } from './telegram/telegram.module';
 import { InfoModule } from './info/info.module';
 import { GenesisModule } from './genesis/genesis.module';
 import { AppService } from './app.service';

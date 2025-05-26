@@ -7,7 +7,7 @@ import { WhitelistController } from './whitelist.controller';
 import { PlayersModule } from 'src/players/players.module';
 import { BillingService } from 'src/billing/billing.service';
 import { PrismaModule } from 'src/prisma.module';
-import { TelegramModule } from 'src/telegram.module';
+import { TelegramModule } from 'src/telegram/telegram.module';
 import { PlayerController } from './player.controller';
 import { StatsController } from './stats.controller';
 import { ContainersController } from './containers.controller';

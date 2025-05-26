@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { Bot } from "grammy";
-import { BillingService } from "./billing/billing.service";
+import { BillingService } from "../billing/billing.service";
 
 @Injectable()
 export class TelegramService implements OnModuleInit {
@@ -33,7 +33,9 @@ Now whitelisted until: ${p.whitelisted_until.toLocaleDateString()}`);
 Now Plus until: ${p.plus_until.toLocaleDateString()}`);
         });
 
-        if (this.go) { this.bot.start(); console.log("tg run"); }
+        if (process.env.TELEGRAM_POLLING == "1") {
+            if (this.go) { this.bot.start(); console.log("tg run"); }
+        } else this.registerWebhook();
     }
 
     sendMessage(chat: number, msg: string) {
@@ -49,20 +51,31 @@ Now Plus until: ${p.plus_until.toLocaleDateString()}`);
     }
 
     run() {
-        console.log("!! run() exec");
-        if (this.bot) {
-            console.log("!! trying to run xx listener");
-            console.log("!! trying to run xx listener");
-            console.log("!! trying to run xx listener");
-            this.bot.start().catch(ex => {
-                console.log("!! ERROR: there is already another listener, retry in 10");
-                console.log("!! ERROR: there is already another listener, retry in 10");
-                console.log("!! ERROR: there is already another listener, retry in 10");
-                setTimeout(this.run, 10_000);
-            });
-            console.log("run");
-            // this.sendNOC("Running listeners!")
-        }
-        else this.go = true;
+        if (process.env.TELEGRAM_POLLING == "1") {
+            this.bot.api.deleteWebhook();
+            console.log("!! run() exec");
+            if (this.bot) {
+                console.log("!! trying to run xx listener");
+                console.log("!! trying to run xx listener");
+                console.log("!! trying to run xx listener");
+                this.bot.start().catch(ex => {
+                    console.log("!! ERROR: there is already another listener, retry in 10");
+                    console.log("!! ERROR: there is already another listener, retry in 10");
+                    console.log("!! ERROR: there is already another listener, retry in 10");
+                    setTimeout(this.run, 10_000);
+                });
+                console.log("run");
+                // this.sendNOC("Running listeners!")
+            }
+            else this.go = true;
+        } else this.registerWebhook();
+    }
+
+    registerWebhook() {
+        this.bot.api.setWebhook("https://api.kratosmc.ru/tg/hook");
+    }
+
+    getBot() {
+        return this.bot;
     }
 }
