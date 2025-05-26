@@ -5,8 +5,10 @@ WORKDIR /app
 
 COPY . .
 
+RUN apt-get update
+RUN apt-get install -y openssl
 RUN npm install
-RUN npx prisma generate
+RUN npm run dbgen
 RUN npm run build
 
 ENTRYPOINT [ "npm", "run", "start:prod" ]
