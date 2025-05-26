@@ -72,7 +72,11 @@ Now Plus until: ${p.plus_until.toLocaleDateString()}`);
     }
 
     registerWebhook() {
-        this.bot.api.setWebhook("https://api.kratosmc.ru/tg/hook");
+        try {
+            this.bot.api.setWebhook("https://api.kratosmc.ru/tg/hook");
+        } catch (ex) {
+            console.log("Could not set da webhook :c");
+        }
     }
 
     getBot() {
