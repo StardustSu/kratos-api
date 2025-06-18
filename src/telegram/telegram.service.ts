@@ -1,6 +1,7 @@
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { Bot } from "grammy";
 import { BillingService } from "../billing/billing.service";
+import axios from "axios";
 
 @Injectable()
 export class TelegramService implements OnModuleInit {
@@ -31,6 +32,15 @@ Now whitelisted until: ${p.whitelisted_until.toLocaleDateString()}`);
             const p = await this.billing.addPlusPlayer(ctx.match[1], d * 24 * 60 * 60 * 1000);
             await this.sendNOC(`Added Kratos+ <code>${ctx.match[1]}</code> for ${d} days
 Now Plus until: ${p.plus_until.toLocaleDateString()}`);
+        });
+
+        this.bot.hears(/^\/tags (.+)$/miu, async ctx => {
+            const name = ctx.match[1];
+            axios.get(`https://registry.lampamc.ru/v2/${name}/tags/list`).then(res => {
+                ctx.reply(`<code>registry.lampamc.ru/${name}</code>
+Tags:
+<i>${res.data.tags.join("\n")}</i>`, { parse_mode: 'HTML' });
+            });
         });
 
         if (process.env.TELEGRAM_POLLING == "1") {
